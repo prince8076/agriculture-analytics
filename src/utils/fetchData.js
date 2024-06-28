@@ -13,8 +13,8 @@ const aggregateData = (data) => {
 
     data.forEach(row => {
         const year = row['Year'];
-        const crop = row['Crop'];
-        const production = parseFloat(row['Production']) || 0;
+        const crop = row['Crop Name']; // Adjusted to match your dataset structure
+        const production = parseFloat(row['Crop Production (UOM:t(Tonnes))']) || 0; // Adjusted key to match your dataset
 
         if (!result[year]) {
             result[year] = { maxCrop: crop, minCrop: crop, maxProduction: production, minProduction: production };
