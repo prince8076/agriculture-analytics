@@ -25,7 +25,7 @@ const DataTable = ({ data }) => {
         },
     };
 
-    console.log("Data passed to DataTable:", data); // Debug log
+    console.log("Data passed to DataTable:", data);
 
     return (
         <div style={tableStyles.tableContainer}>
