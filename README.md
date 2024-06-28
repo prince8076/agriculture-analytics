@@ -16,7 +16,8 @@ Clone the repository: git clone git@github.com:prince8076/agriculture-analytics.
 
 cd agriculture-analytics-dashboard
 
-Install dependencies:yarn install or npm install
+
+Install dependencies :  yarn install or npm install
 
 
 Available Scripts
