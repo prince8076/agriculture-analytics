@@ -4,8 +4,12 @@ export const fetchData = async () => {
     console.log("Dataset fetched:", Data); // Debug log
 
     const aggregatedData = aggregateData(Data);
+    const averageData = calculateAverages(Data);
+
     console.log("Aggregated data:", aggregatedData); // Debug log
-    return aggregatedData;
+    console.log("Average data:", averageData); // Debug log
+
+    return { aggregatedData, averageData };
 };
 
 const aggregateData = (data) => {
@@ -35,4 +39,41 @@ const aggregateData = (data) => {
         maxCrop,
         minCrop,
     }));
+};
+
+const calculateAverages = (data) => {
+    const cropData = {};
+
+    // Initialize counters and accumulators
+    const count = {};
+    const yieldSum = {};
+    const areaSum = {};
+
+    // Iterate through data to accumulate yield and area data
+    data.forEach(row => {
+        const crop = row['Crop Name'];
+        const yieldValue = parseFloat(row['Yield Of Crops (UOM:Kg/Ha(KilogramperHectare))']) || 0;
+        const area = parseFloat(row['Area Under Cultivation (UOM:Ha(Hectares))']) || 0;
+
+        if (!count[crop]) {
+            count[crop] = 1;
+            yieldSum[crop] = yieldValue;
+            areaSum[crop] = area;
+        } else {
+            count[crop]++;
+            yieldSum[crop] += yieldValue;
+            areaSum[crop] += area;
+        }
+    });
+
+    // Calculate averages
+    const averages = {};
+    Object.keys(count).forEach(crop => {
+        averages[crop] = {
+            averageYield: yieldSum[crop] / count[crop],
+            averageArea: areaSum[crop] / count[crop],
+        };
+    });
+
+    return averages;
 };

@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Container } from '@mantine/core';
 import { fetchData } from './utils/fetchData';
 import DataTable from './components/DataTable';
+import CropAveragesTable from './components/CropAveragesTable';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [aggregatedData, setAggregatedData] = useState([]);
+  const [averageData, setAverageData] = useState({});
 
   useEffect(() => {
     const getData = async () => {
-      const result = await fetchData();
-      console.log("Data fetched in App component:", result); // Debug log
-      setData(result);
+      const { aggregatedData, averageData } = await fetchData();
+      console.log("Aggregated data fetched in App component:", aggregatedData); // Debug log
+      console.log("Average data fetched in App component:", averageData); // Debug log
+      setAggregatedData(aggregatedData);
+      setAverageData(averageData);
     };
     getData();
   }, []);
@@ -18,7 +22,10 @@ const App = () => {
   return (
     <Container>
       <h1>Agriculture Analytics</h1>
-      <DataTable data={data} />
+      <h2>Crops with Maximum and Minimum Production</h2>
+      <DataTable data={aggregatedData} />
+      <h2>Average Yield and Cultivation Area of Crops between 1950-2020</h2>
+      <CropAveragesTable averageData={averageData} />
     </Container>
   );
 };
