@@ -1,13 +1,13 @@
 import Data from '../dataset.json';
 
 export const fetchData = async () => {
-    console.log("Dataset fetched:", Data); // Debug log
+    console.log("Dataset fetched:", Data);
 
     const aggregatedData = aggregateData(Data);
     const averageData = calculateAverages(Data);
 
-    console.log("Aggregated data:", aggregatedData); // Debug log
-    console.log("Average data:", averageData); // Debug log
+    console.log("Aggregated data:", aggregatedData);
+    console.log("Average data:", averageData);
 
     return { aggregatedData, averageData };
 };
@@ -17,8 +17,8 @@ const aggregateData = (data) => {
 
     data.forEach(row => {
         const year = row['Year'];
-        const crop = row['Crop Name']; // Adjusted to match your dataset structure
-        const production = parseFloat(row['Crop Production (UOM:t(Tonnes))']) || 0; // Adjusted key to match your dataset
+        const crop = row['Crop Name'];
+        const production = parseFloat(row['Crop Production (UOM:t(Tonnes))']) || 0;
 
         if (!result[year]) {
             result[year] = { maxCrop: crop, minCrop: crop, maxProduction: production, minProduction: production };
@@ -44,12 +44,10 @@ const aggregateData = (data) => {
 const calculateAverages = (data) => {
     const cropData = {};
 
-    // Initialize counters and accumulators
     const count = {};
     const yieldSum = {};
     const areaSum = {};
 
-    // Iterate through data to accumulate yield and area data
     data.forEach(row => {
         const crop = row['Crop Name'];
         const yieldValue = parseFloat(row['Yield Of Crops (UOM:Kg/Ha(KilogramperHectare))']) || 0;
@@ -66,7 +64,6 @@ const calculateAverages = (data) => {
         }
     });
 
-    // Calculate averages
     const averages = {};
     Object.keys(count).forEach(crop => {
         averages[crop] = {

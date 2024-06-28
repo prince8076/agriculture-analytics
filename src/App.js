@@ -11,8 +11,8 @@ const App = () => {
   useEffect(() => {
     const getData = async () => {
       const { aggregatedData, averageData } = await fetchData();
-      console.log("Aggregated data fetched in App component:", aggregatedData); // Debug log
-      console.log("Average data fetched in App component:", averageData); // Debug log
+      console.log("Aggregated data fetched in App component:", aggregatedData);
+      console.log("Average data fetched in App component:", averageData);
       setAggregatedData(aggregatedData);
       setAverageData(averageData);
     };
