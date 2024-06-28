@@ -3,11 +3,16 @@ Agriculture Analytics Dashboard
 This project provides a dashboard for agricultural analytics based on data from India. It includes functionalities to display crops with maximum and minimum production for each year between 1950 and 2020, as well as average yield and cultivation area for crops over the same period.
 
 Getting Started
+
 Prerequisites
+
 Node.js (version >= 12.0.0)
+
 npm or yarn
-Installation
-Clone the repository: git clone git@github.com:prince8076/agriculture-analytics.git
+
+Installation  
+
+Clone the repository: git clone git@github.com:prince8076/agriculture-analytics.git  
 cd agriculture-analytics-dashboard
 Install dependencies:yarn install or npm install
 
