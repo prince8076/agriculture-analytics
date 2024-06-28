@@ -22,7 +22,9 @@ Install dependencies :  yarn install or npm install
 
 Available Scripts
 
-In the project directory, you can run: npm start
+In the project directory, 
+
+you can run: npm start
 
 Runs the app in development mode.
 
